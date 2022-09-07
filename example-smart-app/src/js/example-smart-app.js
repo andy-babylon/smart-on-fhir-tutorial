@@ -33,7 +33,8 @@
 
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
-            lname = patient.name[0].family.join(' ');
+            // Cerner returns last name as an array, logica launcher returns a string
+            lname = (typeof patient.name[0].family === 'string' ? patient.name[0].family : patient.name[0].family.join(' '));
           }
 
           var height = byCodes('8302-2');
